@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import {
   NavigationMenu,
@@ -7,6 +7,9 @@ import {
 } from "../ui/navigation-menu";
 
 export const Header = () => {
+  const [language, setLanguage] = useState("EN");
+  const [isLanguageHovered, setIsLanguageHovered] = useState(false);
+
   // Navigation menu items
   const navItems = [
     { label: "Why iSelfie™", href: "#" },
@@ -14,9 +17,13 @@ export const Header = () => {
     { label: "FAQ", href: "#" },
   ];
 
+  const toggleLanguage = () => {
+    setLanguage(language === "EN" ? "AR" : "EN");
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md">
-      <div className="flex w-full px-20 items-center justify-between py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm">
+      <div className="flex w-full px-20 items-center justify-between py-6">
         <div className="flex gap-56 items-center">
           <div className="flex items-center">
             <img
@@ -47,7 +54,7 @@ export const Header = () => {
                 <NavigationMenuItem key={index}>
                   <Button
                     variant="ghost"
-                    className="h-16 px-4 rounded-[40px] backdrop-blur-md font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:bg-white/10 transition-colors duration-200"
+                    className="h-16 px-4 rounded-[40px] backdrop-blur-md font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:text-[#956ad9] hover:bg-transparent transition-colors duration-300"
                   >
                     {item.label}
                   </Button>
@@ -59,21 +66,29 @@ export const Header = () => {
           <div className="flex items-center gap-4">
             <Button
               variant="outline"
-              className="h-16 px-12 rounded-[40px] border border-solid border-[#a7907c80] bg-transparent backdrop-blur-md font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:bg-white/10 transition-colors duration-200"
+              className="h-16 px-12 rounded-[40px] border border-solid border-[#a7907c80] bg-transparent backdrop-blur-md font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:border-[#f2e2d4] hover:bg-white/5 hover:text-white transition-colors duration-300"
             >
               Login
             </Button>
 
-            <Button className="h-16 px-12 bg-[#a7907c4c] rounded-[40px] backdrop-blur-[20px] font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:bg-[#a7907c6c] transition-colors duration-200">
+            <Button className="h-16 px-12 bg-[#a7907c4c] rounded-[40px] backdrop-blur-[20px] font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:bg-[#a7907c] transition-colors duration-300"
+            >
               Try it now
             </Button>
 
-            <Button
-              variant="ghost"
-              className="h-16 px-4 rounded-[40px] backdrop-blur-md font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] underline [font-style:var(--desktop-label-font-style)] hover:bg-white/10 transition-colors duration-200"
-            >
-              EN
-            </Button>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <Button
+                    variant="ghost"
+                    className="h-16 px-4 rounded-[40px] backdrop-blur-md font-desktop-label font-[number:var(--desktop-label-font-weight)] text-white text-[length:var(--desktop-label-font-size)] tracking-[var(--desktop-label-letter-spacing)] leading-[var(--desktop-label-line-height)] [font-style:var(--desktop-label-font-style)] hover:text-[#956ad9] hover:bg-transparent transition-colors duration-300"
+                    onClick={toggleLanguage}
+                  >
+                    {language}
+                  </Button>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
         </div>
       </div>
